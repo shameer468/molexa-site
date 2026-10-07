@@ -1,8 +1,10 @@
 import emailjs from '@emailjs/browser';
+
 // ============ EMAILJS CONFIG ============
-const EMAILJS_SERVICE_ID = 'service_8pondab';      // ✅ SERVICE ID
-const EMAILJS_TEMPLATE_ID = 'template_fwit88a';    // ✅ TEMPLATE ID
-const EMAILJS_PUBLIC_KEY = 'Ky0GmyAXGcmgAffmD';    // ✅ PUBLIC KEY
+const EMAILJS_SERVICE_ID = 'service_8pondab';            // ✅ SERVICE ID
+const EMAILJS_TEMPLATE_ID = 'template_fwit88a';          // ✅ OWNER TEMPLATE ID
+const EMAILJS_THANKYOU_TEMPLATE_ID = 'template_sr9dhs5'; // ✅ CUSTOMER TEMPLATE ID
+const EMAILJS_PUBLIC_KEY = 'Ky0GmyAXGcmgAffmD';          // ✅ PUBLIC KEY
 
 // ============ LOCAL STORAGE HELPERS ============
 const getOrdersFromStorage = () => {
@@ -52,13 +54,38 @@ const sendEmailNotification = async (type, data) => {
             };
         }
 
-        const response = await emailjs.send(
+        // ✅ EMAIL 1: OWNER KO (aapko)
+        const ownerResponse = await emailjs.send(
             EMAILJS_SERVICE_ID,
             EMAILJS_TEMPLATE_ID,
             templateParams,
             EMAILJS_PUBLIC_KEY
         );
-        console.log('✅ Email sent successfully!', response);
+        console.log('✅ Owner email sent!', ownerResponse);
+
+        // ✅ EMAIL 2: CUSTOMER KO THANK YOU
+        if (data.email && data.email.trim() !== '') {
+            const customerParams = {
+                customer_name: data.name,
+                customer_email: data.email,
+                product: data.product || 'N/A',
+                quantity: data.quantity || '',
+                total: data.total || '',
+                address: data.address || '',
+                date: new Date().toLocaleString(),
+                to_email: data.email,
+                title: 'Thank You from Molexa'
+            };
+
+            const customerResponse = await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_THANKYOU_TEMPLATE_ID,
+                customerParams,
+                EMAILJS_PUBLIC_KEY
+            );
+            console.log('✅ Customer thank you email sent!', customerResponse);
+        }
+
         return true;
     } catch (error) {
         console.error('❌ Email error:', error);
@@ -87,7 +114,7 @@ export const createOrder = async (orderData) => {
     orders.push(newOrder);
     saveOrdersToStorage(orders);
     
-    // ✅ SIRF EMAIL — WhatsApp HATAYA!
+    // ✅ Email notification (owner + customer)
     await sendEmailNotification('order', orderData);
     
     return { data: { success: true, data: newOrder } };
@@ -119,7 +146,7 @@ export const createMessage = async (formData) => {
     messages.push(newMessage);
     saveMessagesToStorage(messages);
     
-    // ✅ SIRF EMAIL — WhatsApp HATAYA!
+    // ✅ Email notification (owner + customer)
     await sendEmailNotification('message', formData);
     
     return { data: { success: true, data: newMessage } };

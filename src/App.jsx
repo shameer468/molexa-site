@@ -143,8 +143,8 @@ function App() {
     setOrderStatus({ loading: true, success: false, error: false, message: '' });
     
     try {
-      if (!orderData.name || !orderData.phone || !orderData.address || !orderData.city) {
-        setOrderStatus({ loading: false, success: false, error: true, message: '⚠️ Please fill all required fields' });
+      if (!orderData.name || !orderData.phone || !orderData.email || !orderData.address || !orderData.city) {
+        setOrderStatus({ loading: false, success: false, error: true, message: '⚠️ Please fill all required fields including email' });
         return;
       }
       
@@ -360,33 +360,7 @@ function App() {
   return (
     <div className="App">
       {/* API STATUS BADGE */}
-      <div style={{
-        position: 'fixed',
-        top: '80px',
-        right: '20px',
-        zIndex: 999,
-        background: apiConnected ? '#22c55e' : '#f59e0b',
-        color: '#fff',
-        padding: '8px 18px',
-        borderRadius: '20px',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        letterSpacing: '1px',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px'
-      }}>
-        <span style={{
-          display: 'inline-block',
-          width: '10px',
-          height: '10px',
-          borderRadius: '50%',
-          background: apiConnected ? '#22c55e' : '#f59e0b',
-          animation: apiConnected ? 'pulse 1.5s infinite' : 'none'
-        }}></span>
-        {apiConnected ? '✅ API Connected' : '⚠️ Local Mode'}
-      </div>
+      {/* <div style={{...}}>...</div> */}
 
       {/* Navbar */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
@@ -698,6 +672,7 @@ function App() {
           )}
 
           <form className="order-form" onSubmit={handleOrderSubmit}>
+            {/* ✅ FULL NAME FIELD (YEH ADD KIYA HAI) */}
             <div className="form-group">
               <label>Full Name *</label>
               <input 
@@ -705,6 +680,17 @@ function App() {
                 name="name" 
                 placeholder="Enter your full name" 
                 value={orderForm.name}
+                onChange={handleOrderChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Email Address *</label>
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="your@email.com" 
+                value={orderForm.email}
                 onChange={handleOrderChange}
                 required
               />
@@ -718,16 +704,6 @@ function App() {
                 value={orderForm.phone}
                 onChange={handleOrderChange}
                 required
-              />
-            </div>
-            <div className="form-group">
-              <label>Email Address</label>
-              <input 
-                type="email" 
-                name="email" 
-                placeholder="your@email.com" 
-                value={orderForm.email}
-                onChange={handleOrderChange}
               />
             </div>
             <div className="form-group">
@@ -834,8 +810,6 @@ function App() {
           </div>
         </div>
       </section>
-
-     
 
       {/* Contact Section - NO FORM */}
       <section id="contact" ref={contactRef} className="contact animate-on-scroll">

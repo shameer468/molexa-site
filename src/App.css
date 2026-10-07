@@ -9,17 +9,16 @@ html,
 body,
 #root {
   width: 100%;
-  min-width: 100%;
+  max-width: 100%;
   min-height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
 }
-
-
 
 html {
   scroll-behavior: smooth;
@@ -69,6 +68,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 .navbar-brand {
   cursor: pointer;
   display: flex;
@@ -157,6 +157,8 @@ body {
   gap: 5px;
   cursor: pointer;
   padding: 5px;
+  z-index: 1100;
+  position: relative;
 }
 
 .hamburger span {
@@ -199,6 +201,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 20px;
+  }
+  
   .hamburger {
     display: flex;
   }
@@ -207,17 +213,18 @@ body {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 75%;
-    max-width: 320px;
+    width: 80%;
+    max-width: 300px;
     height: 100vh;
     background: rgba(5, 5, 5, 0.98);
     flex-direction: column;
-    padding: 80px 30px 30px;
+    padding: 90px 25px 30px;
     transition: right 0.4s ease;
     gap: 15px;
     align-items: flex-start;
     border-left: 1px solid rgba(201, 162, 39, 0.1);
     overflow-y: auto;
+    z-index: 1050;
   }
   
   .navbar-menu.active {
@@ -243,6 +250,27 @@ body {
     text-align: center;
     padding: 12px;
     font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 15px;
+  }
+  .brand-name {
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+  .brand-tagline {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .navbar-menu {
+    width: 85%;
+    padding: 80px 20px 20px;
+  }
+  .hamburger span {
+    width: 24px;
   }
 }
 
@@ -287,6 +315,19 @@ body {
   .whatsapp-float svg {
     width: 26px;
     height: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-float {
+    bottom: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+  }
+  .whatsapp-float svg {
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -558,8 +599,8 @@ body {
 
 @media (max-width: 768px) {
   .hero {
-    padding: 80px 20px 40px;
-    min-height: 90vh;
+    padding: 90px 20px 40px;
+    min-height: auto;
   }
   .hero-content {
     flex-direction: column;
@@ -581,6 +622,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
   
   .btn-primary, .btn-secondary {
@@ -632,6 +674,51 @@ body {
   
   .scroll-indicator {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 80px 15px 30px;
+  }
+  .hero-title {
+    font-size: 30px;
+  }
+  .hero-description {
+    font-size: 14px;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 12px 20px;
+    font-size: 12px;
+  }
+  
+  .molecular-structure {
+    width: 200px;
+    height: 200px;
+  }
+  .molecule-circle:nth-child(1) {
+    width: 90px;
+    height: 90px;
+    top: 55px;
+    left: 55px;
+  }
+  .molecule-circle:nth-child(2) {
+    width: 140px;
+    height: 140px;
+    top: 30px;
+    left: 30px;
+  }
+  .molecule-circle:nth-child(3) {
+    width: 50px;
+    height: 50px;
+    top: 75px;
+    left: 75px;
+  }
+  .hero-bottle-image {
+    width: 120px;
+  }
+  .water-drop {
+    font-size: 28px;
   }
 }
 
@@ -709,6 +796,14 @@ body {
   color: #fff;
 }
 
+@media (max-width: 480px) {
+  .btn-primary, .btn-secondary {
+    padding: 12px 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+
 /* ============================================
    SECTION TITLES
    ============================================ */
@@ -732,10 +827,21 @@ body {
 @media (max-width: 768px) {
   .section-title {
     font-size: 30px;
+    letter-spacing: 2px;
   }
   .section-subtitle {
     font-size: 15px;
     padding: 0 15px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 24px;
+  }
+  .section-subtitle {
+    font-size: 14px;
   }
 }
 
@@ -790,12 +896,31 @@ body {
 }
 
 @media (max-width: 768px) {
+  .logo-meaning {
+    padding: 60px 0;
+  }
   .logo-cards {
     grid-template-columns: 1fr;
     max-width: 100%;
+    gap: 20px;
   }
   .logo-card {
     padding: 30px 20px;
+  }
+  .logo-icon {
+    font-size: 40px;
+  }
+  .logo-card h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-meaning {
+    padding: 50px 0;
+  }
+  .logo-card {
+    padding: 25px 15px;
   }
 }
 
@@ -950,6 +1075,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .purity-guarantee {
+    padding: 60px 0;
+  }
   .purity-grid {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -960,6 +1088,7 @@ body {
   .purity-molecule {
     width: 220px;
     height: 220px;
+    margin: 0 auto;
   }
   .purity-image {
     height: 180px;
@@ -981,6 +1110,40 @@ body {
     height: 40px;
     top: 150px;
     left: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .purity-guarantee {
+    padding: 50px 0;
+  }
+  .purity-title {
+    font-size: 22px;
+  }
+  .purity-molecule {
+    width: 180px;
+    height: 180px;
+  }
+  .purity-image {
+    height: 150px;
+  }
+  .purity-dot:nth-child(1) {
+    width: 55px;
+    height: 55px;
+    top: 60px;
+    left: 60px;
+  }
+  .purity-dot:nth-child(2) {
+    width: 32px;
+    height: 32px;
+    top: 25px;
+    left: 25px;
+  }
+  .purity-dot:nth-child(3) {
+    width: 32px;
+    height: 32px;
+    top: 120px;
+    left: 120px;
   }
 }
 
@@ -1017,6 +1180,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .stats {
+    padding: 60px 0;
+  }
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -1026,6 +1192,18 @@ body {
   }
   .stat-label {
     font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats {
+    padding: 50px 0;
+  }
+  .stat-number {
+    font-size: 28px;
+  }
+  .stat-label {
+    font-size: 10px;
   }
 }
 
@@ -1082,11 +1260,27 @@ body {
 }
 
 @media (max-width: 768px) {
+  .private-label {
+    padding: 60px 0;
+  }
   .private-cta h3 {
     font-size: 22px;
   }
   .private-phone {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .private-cta h3 {
+    font-size: 18px;
+  }
+  .private-phone {
+    font-size: 14px;
+  }
+  .private-location,
+  .private-delivery {
+    font-size: 12px;
   }
 }
 
@@ -1143,6 +1337,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .about {
+    padding: 60px 0;
+  }
   .about-grid {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -1150,6 +1347,20 @@ body {
   .about-content h3,
   .about-mission h3 {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 50px 0;
+  }
+  .about-content h3,
+  .about-mission h3 {
+    font-size: 18px;
+  }
+  .mission-feature {
+    font-size: 13px;
+    padding: 8px 12px;
   }
 }
 
@@ -1202,10 +1413,32 @@ body {
 }
 
 @media (max-width: 768px) {
+  .why-molexa {
+    padding: 60px 0;
+  }
   .features-grid {
     grid-template-columns: 1fr;
     max-width: 400px;
     margin: 0 auto;
+    gap: 20px;
+  }
+  .feature-card {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-molexa {
+    padding: 50px 0;
+  }
+  .feature-card {
+    padding: 25px 15px;
+  }
+  .feature-icon {
+    font-size: 32px;
+  }
+  .feature-card h3 {
+    font-size: 16px;
   }
 }
 
@@ -1293,18 +1526,34 @@ body {
 }
 
 @media (max-width: 768px) {
+  .products {
+    padding: 60px 0;
+  }
   .products-grid {
     grid-template-columns: 1fr;
     max-width: 100%;
+    gap: 20px;
   }
   .product-image {
-    height: 200px;
+    height: 220px;
   }
   .product-name {
     font-size: 16px;
   }
   .product-price {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products {
+    padding: 50px 0;
+  }
+  .product-image {
+    height: 200px;
+  }
+  .product-info {
+    padding: 15px;
   }
 }
 
@@ -1315,6 +1564,12 @@ body {
   padding: 60px 0;
   background: #050505;
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .bulk-orders {
+    padding: 50px 0;
+  }
 }
 
 /* ============================================
@@ -1480,6 +1735,7 @@ body {
   width: 16px;
   height: 16px;
   accent-color: #C9A227;
+  flex-shrink: 0;
 }
 
 .bank-details {
@@ -1559,6 +1815,80 @@ body {
   margin-top: 12px;
 }
 
+@media (max-width: 768px) {
+  .order {
+    padding: 60px 0;
+  }
+  .order-summary {
+    padding: 20px 15px;
+    margin: 0 auto 20px;
+  }
+  .order-summary h3 {
+    font-size: 18px;
+  }
+  .summary-item span {
+    font-size: 13px;
+  }
+  .summary-total {
+    font-size: 18px;
+  }
+  .order-form {
+    max-width: 100%;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 12px 14px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  .payment-option {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  .bank-details {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .order {
+    padding: 50px 0;
+  }
+  .order-summary {
+    padding: 15px 12px;
+  }
+  .order-summary h3 {
+    font-size: 16px;
+  }
+  .summary-item {
+    padding: 6px 0;
+  }
+  .summary-item span {
+    font-size: 12px;
+  }
+  .summary-total {
+    font-size: 16px;
+  }
+  .form-group label {
+    font-size: 12px;
+  }
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+  .payment-option {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+  .bank-details h4 {
+    font-size: 15px;
+  }
+  .bank-details p {
+    font-size: 13px;
+  }
+}
+
 /* ============================================
    PRIVATE LABEL DETAIL
    ============================================ */
@@ -1601,6 +1931,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .private-label-detail {
+    padding: 60px 0;
+  }
   .private-list {
     grid-template-columns: 1fr;
   }
@@ -1609,42 +1942,16 @@ body {
   }
 }
 
-/* ============================================
-   ORDER CTA
-   ============================================ */
-.order-cta {
-  padding: 80px 0;
-  background: #0B0B0B;
-  text-align: center;
-}
-
-.order-cta h2 {
-  font-size: 46px;
-  color: #C9A227;
-  margin-bottom: 8px;
-}
-
-.order-cta h3 {
-  font-size: 28px;
-  color: #F5F5F5;
-  margin-bottom: 15px;
-}
-
-.contact-phone {
-  font-size: 20px;
-  color: #999;
-  margin-bottom: 25px;
-}
-
-@media (max-width: 768px) {
-  .order-cta h2 {
-    font-size: 30px;
+@media (max-width: 480px) {
+  .private-label-detail {
+    padding: 50px 0;
   }
-  .order-cta h3 {
-    font-size: 20px;
+  .private-detail-content h3 {
+    font-size: 22px;
   }
-  .contact-phone {
-    font-size: 16px;
+  .private-list li {
+    font-size: 13px;
+    padding: 10px;
   }
 }
 
@@ -1683,9 +1990,10 @@ body {
 }
 
 .contact-details {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
 }
 
 .contact-item {
@@ -1697,6 +2005,7 @@ body {
 .contact-icon {
   font-size: 20px;
   color: #C9A227;
+  flex-shrink: 0;
 }
 
 .contact-item strong {
@@ -1708,6 +2017,7 @@ body {
 .contact-item p {
   color: #999;
   font-size: 13px;
+  word-break: break-word;
 }
 
 .map-placeholder {
@@ -1744,6 +2054,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .contact {
+    padding: 60px 0;
+  }
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -1751,8 +2064,30 @@ body {
   .contact-info {
     padding: 20px;
   }
+  .contact-details {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
   .map-container iframe {
-    height: 200px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 50px 0;
+  }
+  .contact-info {
+    padding: 15px;
+  }
+  .contact-item strong {
+    font-size: 12px;
+  }
+  .contact-item p {
+    font-size: 12px;
+  }
+  .map-container iframe {
+    height: 180px;
   }
 }
 
@@ -1841,6 +2176,7 @@ body {
 .inbox-email {
   color: #666;
   font-size: 12px;
+  word-break: break-word;
 }
 
 .no-messages {
@@ -1850,6 +2186,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .inbox {
+    padding: 60px 0;
+  }
   .inbox-header {
     flex-direction: column;
     align-items: flex-start;
@@ -1859,336 +2198,21 @@ body {
   }
 }
 
-/* ============================================
-   ADMIN
-   ============================================ */
-.admin {
-  padding: 80px 0;
-  background: #050505;
-}
-
-.admin-login {
-  max-width: 380px;
-  margin: 0 auto;
-  padding: 40px;
-  background: #0B0B0B;
-  border: 1px solid rgba(201, 162, 39, 0.1);
-  border-radius: 5px;
-}
-
-.admin-login .section-title {
-  font-size: 28px;
-  margin-bottom: 4px;
-}
-
-.admin-login h3 {
-  color: #999;
-  text-align: center;
-  font-weight: 400;
-  margin-bottom: 25px;
-  font-size: 18px;
-}
-
-.demo-note {
-  text-align: center;
-  color: #666;
-  font-size: 12px;
-  margin-top: 12px;
-}
-
-.admin-dashboard {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.admin-header h2 {
-  color: #C9A227;
-  font-size: 24px;
-  letter-spacing: 2px;
-}
-
-.admin-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-}
-
-.admin-tab {
-  background: transparent;
-  color: #999;
-  border: 1px solid rgba(201, 162, 39, 0.1);
-  padding: 10px 25px;
-  cursor: pointer;
-  border-radius: 3px;
-  transition: all 0.3s;
-  font-size: 13px;
-}
-
-.admin-tab:hover {
-  color: #F5F5F5;
-  border-color: rgba(201, 162, 39, 0.3);
-}
-
-.admin-tab.active {
-  background: rgba(201, 162, 39, 0.1);
-  color: #C9A227;
-  border-color: #C9A227;
-}
-
-.admin-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.admin-stat {
-  background: #0B0B0B;
-  border: 1px solid rgba(201, 162, 39, 0.1);
-  border-radius: 5px;
-  padding: 20px;
-  text-align: center;
-}
-
-.admin-stat-number {
-  font-size: 34px;
-  font-weight: 700;
-  color: #C9A227;
-  display: block;
-}
-
-.admin-stat-label {
-  color: #666;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.admin-orders,
-.admin-messages {
-  background: #0B0B0B;
-  border: 1px solid rgba(201, 162, 39, 0.1);
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 25px;
-  overflow: hidden;
-}
-
-.admin-orders h3,
-.admin-messages h3 {
-  color: #C9A227;
-  margin-bottom: 15px;
-  letter-spacing: 2px;
-  font-size: 20px;
-}
-
-.table-wrapper {
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  min-width: 700px;
-}
-
-table th {
-  text-align: left;
-  padding: 10px 10px;
-  color: #999;
-  border-bottom: 1px solid rgba(201, 162, 39, 0.1);
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 1px;
-}
-
-table td {
-  padding: 10px 10px;
-  border-bottom: 1px solid rgba(201, 162, 39, 0.05);
-  color: #F5F5F5;
-}
-
-.status-badge {
-  padding: 3px 12px;
-  border-radius: 10px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.status-badge.pending {
-  background: rgba(255, 193, 7, 0.2);
-  color: #FFC107;
-}
-
-.status-badge.processing {
-  background: rgba(33, 150, 243, 0.2);
-  color: #2196F3;
-}
-
-.status-badge.delivered {
-  background: rgba(76, 175, 80, 0.2);
-  color: #4CAF50;
-}
-
-.status-badge.cancelled {
-  background: rgba(244, 67, 54, 0.2);
-  color: #F44336;
-}
-
-.status-select {
-  background: #050505;
-  border: 1px solid rgba(201, 162, 39, 0.1);
-  color: #F5F5F5;
-  padding: 4px 10px;
-  border-radius: 3px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.messages-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.message-item {
-  background: #050505;
-  border: 1px solid rgba(201, 162, 39, 0.05);
-  border-radius: 5px;
-  padding: 16px;
-}
-
-.message-item.unread {
-  border-left: 3px solid #C9A227;
-}
-
-.message-header {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.message-name {
-  font-weight: 700;
-  color: #F5F5F5;
-  font-size: 14px;
-}
-
-.message-email {
-  color: #666;
-  font-size: 12px;
-}
-
-.message-date {
-  color: #666;
-  font-size: 12px;
-}
-
-.message-status {
-  font-size: 11px;
-  padding: 2px 12px;
-  border-radius: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.message-status.unread {
-  background: rgba(201, 162, 39, 0.2);
-  color: #C9A227;
-}
-
-.message-status.read {
-  background: rgba(102, 102, 102, 0.2);
-  color: #666;
-}
-
-.message-subject {
-  color: #F5F5F5;
-  font-weight: 600;
-  margin-bottom: 4px;
-  font-size: 14px;
-}
-
-.message-text {
-  color: #999;
-  font-size: 13px;
-}
-
-.admin-actions {
-  background: #0B0B0B;
-  border: 1px solid rgba(201, 162, 39, 0.1);
-  border-radius: 5px;
-  padding: 20px;
-}
-
-.admin-actions h3 {
-  color: #C9A227;
-  margin-bottom: 15px;
-  letter-spacing: 2px;
-  font-size: 20px;
-}
-
-.action-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-@media (max-width: 1024px) {
-  .admin-stats {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 480px) {
+  .inbox {
+    padding: 50px 0;
   }
-}
-
-@media (max-width: 768px) {
-  .admin-login {
-    padding: 20px;
-    margin: 0 15px;
+  .inbox-item {
+    padding: 12px;
   }
-  .admin-login .section-title {
-    font-size: 24px;
+  .inbox-name {
+    font-size: 14px;
   }
-  .admin-stats {
-    grid-template-columns: 1fr 1fr;
+  .inbox-subject {
+    font-size: 14px;
   }
-  .admin-stat-number {
-    font-size: 28px;
-  }
-  .admin-header {
-    flex-direction: column;
-    text-align: center;
-  }
-  .admin-tabs {
-    flex-direction: column;
-    width: 100%;
-  }
-  .admin-tab {
-    text-align: center;
-  }
-  .admin-orders,
-  .admin-messages {
-    padding: 15px;
-  }
-  table {
-    font-size: 12px;
-    min-width: 600px;
-  }
-  table th,
-  table td {
-    padding: 8px 6px;
+  .inbox-message {
+    font-size: 13px;
   }
 }
 
@@ -2254,6 +2278,7 @@ table td {
   color: #999;
   font-size: 13px;
   padding: 3px 0;
+  word-break: break-word;
 }
 
 .footer-newsletter input {
@@ -2321,6 +2346,22 @@ table td {
   }
 }
 
+@media (max-width: 480px) {
+  .footer {
+    padding: 25px 12px 12px;
+  }
+  .footer-brand h2 {
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+  .footer-brand-text {
+    font-size: 14px;
+  }
+  .footer-bottom p {
+    font-size: 11px;
+  }
+}
+
 /* ============================================
    SCROLL ANIMATIONS
    ============================================ */
@@ -2342,76 +2383,6 @@ table td {
 .animate-on-scroll:nth-child(6) { transition-delay: 0.5s; }
 
 /* ============================================
-   EXTRA SMALL SCREENS (below 480px)
-   ============================================ */
-@media (max-width: 480px) {
-  .brand-name {
-    font-size: 18px;
-    letter-spacing: 2px;
-  }
-  .brand-tagline {
-    font-size: 7px;
-  }
-  
-  .hero-title {
-    font-size: 30px;
-  }
-  .hero-description {
-    font-size: 14px;
-  }
-  .btn-primary, .btn-secondary {
-    padding: 12px 20px;
-    font-size: 12px;
-  }
-  
-  .molecular-structure {
-    width: 200px;
-    height: 200px;
-  }
-  .molecule-circle:nth-child(1) {
-    width: 90px;
-    height: 90px;
-    top: 55px;
-    left: 55px;
-  }
-  .molecule-circle:nth-child(2) {
-    width: 140px;
-    height: 140px;
-    top: 30px;
-    left: 30px;
-  }
-  .molecule-circle:nth-child(3) {
-    width: 50px;
-    height: 50px;
-    top: 75px;
-    left: 75px;
-  }
-  .hero-bottle-image {
-    width: 120px;
-  }
-  .water-drop {
-    font-size: 28px;
-  }
-  
-  .section-title {
-    font-size: 26px;
-  }
-  
-  .stat-number {
-    font-size: 28px;
-  }
-  
-  .private-cta h3 {
-    font-size: 18px;
-  }
-  
-  .admin-login {
-    padding: 15px;
-  }
-  .admin-stats {
-    grid-template-columns: 1fr 1fr;
-  }
-}/* ============================================
    API STATUS PULSE ANIMATION
    ============================================ */
 @keyframes pulse {
