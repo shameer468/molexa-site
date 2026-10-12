@@ -1,11 +1,14 @@
 // src/App.jsx
 
 import React, { useState, useEffect, useRef } from 'react';
-
 import './App.css';
 
 // ========== API IMPORT ==========
 import { getProducts, createUser, getUsers, createOrder, createMessage } from './services/api';
+
+// ========== FIREBASE IMPORT ==========
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from './firebase';
 
 // ========== ALL IMAGES FROM ASSETS FOLDER ==========
 import heroImage from './assets/water.jpg';
@@ -138,7 +141,7 @@ function App() {
     }
   };
 
-  // ✅ UPDATED: Submit order - API + Local Storage with Notification
+  // ✅ UPDATED: Submit order - API + Firestore + Local Storage
   const submitOrder = async (orderData) => {
     setOrderStatus({ loading: true, success: false, error: false, message: '' });
     
@@ -153,11 +156,33 @@ function App() {
         return;
       }
       
+      // API try (agar available ho)
       try {
         const response = await createOrder(orderData);
         console.log('Order saved in API:', response.data);
       } catch (apiErr) {
         console.log('API not available, saving locally only');
+      }
+
+      // ✅ FIRESTORE MEIN SAVE KARO
+      try {
+        await addDoc(collection(db, 'orders'), {
+          name: orderData.name,
+          email: orderData.email,
+          phone: orderData.phone,
+          address: orderData.address,
+          city: orderData.city,
+          product: orderData.product,
+          quantity: orderData.quantity,
+          total: orderData.total,
+          paymentMethod: orderData.paymentMethod,
+          instructions: orderData.instructions || '',
+          status: 'Pending',
+          createdAt: new Date()
+        });
+        console.log('✅ Order Firestore mein save ho gaya!');
+      } catch (firestoreErr) {
+        console.error('❌ Firestore error:', firestoreErr);
       }
       
       const newOrder = {
@@ -189,7 +214,7 @@ function App() {
     }
   };
 
-  // ✅ UPDATED: Submit contact - API + Local Storage with Notification
+  // ✅ UPDATED: Submit contact - API + Firestore + Local Storage
   const submitContact = async (formData) => {
     setContactStatus({ loading: true, success: false, error: false, message: '' });
     
@@ -199,11 +224,27 @@ function App() {
         return;
       }
       
+      // API try
       try {
         const response = await createMessage(formData);
         console.log('Message saved in API:', response.data);
       } catch (apiErr) {
         console.log('API not available, saving locally only');
+      }
+
+      // ✅ FIRESTORE MEIN MESSAGE SAVE KARO
+      try {
+        await addDoc(collection(db, 'messages'), {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          status: 'Unread',
+          createdAt: new Date()
+        });
+        console.log('✅ Message Firestore mein save ho gaya!');
+      } catch (firestoreErr) {
+        console.error('❌ Firestore error:', firestoreErr);
       }
       
       const newMessage = {
@@ -359,9 +400,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* API STATUS BADGE */}
-      {/* <div style={{...}}>...</div> */}
-
       {/* Navbar */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="navbar-container">
@@ -672,7 +710,6 @@ function App() {
           )}
 
           <form className="order-form" onSubmit={handleOrderSubmit}>
-            {/* ✅ FULL NAME FIELD (YEH ADD KIYA HAI) */}
             <div className="form-group">
               <label>Full Name *</label>
               <input 
@@ -811,7 +848,7 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section - NO FORM */}
+      {/* Contact Section */}
       <section id="contact" ref={contactRef} className="contact animate-on-scroll">
         <div className="container">
           <h2 className="section-title">Contact Us</h2>
@@ -952,7 +989,7 @@ function App() {
         <div className="footer-bottom">
           <p className="footer-brand-text">MOLEXA WATER</p>
           <p>© 2026 Molexa Water — Purity at Molecular Level. All Rights Reserved.</p>
-          <p>Made with ❤️ in Karachi</p>
+          <p>Made ❤️ in Karachi</p>
         </div>
       </footer>
     </div>
